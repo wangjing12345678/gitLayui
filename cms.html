@@ -80,7 +80,10 @@
             </div>
         </div>
     </div>
-
+        <div class="layui-footer" style="left: 0;transition: all 0.5s">
+            <!-- 底部固定区域 -->
+            © layui.com - 底部固定区域
+        </div>
 
 </div>
 </div>
@@ -191,6 +194,7 @@
             $(".layui-body").css({"left":0});
             $(".closeBtn").css({'display':'block'});
             $(".openBtn").css({'display':'none'});
+            $(".layui-footer").css({"left":0});
 
         });
         $(".closeBtn").on('click',function () {
@@ -198,7 +202,7 @@
             $(".layui-body").css({"left":200});
             $(".openBtn").css({'display':'block'});
             $(".closeBtn").css({'display':'none'});
-
+            $(".layui-footer").css({"left":200});
         })
 
 
