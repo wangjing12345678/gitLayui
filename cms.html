@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>layout 后台大布局 - Layui</title>
+    <link rel="stylesheet" href="./layui/css/layui.css">
+</head>
+<body class="layui-layout-body">
+<div class="layui-container" style="width: 100%;padding: 0">
+
+    <div class="layui-layout layui-layout-admin">
+
+    <div class="layui-side layui-bg-black layui-row " style="top: 0;left:-200px;transition: all 0.5s">
+        <div class="layui-side-scroll ">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree "  lay-filter="test">
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a class="" href="javascript:;">所有商品</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;"><button class="layui-btn site-demo-active" data-type="tabAdd" style="padding: 0;background: rgba(0,0,0,0);width: 100%;text-align: left" id="22">新增Tab项</button></a></dd>
+                        <dd><a href="javascript:;"><button class="layui-btn site-demo-active" data-type="tabAdd" style="padding: 0;background: rgba(0,0,0,0);width: 100%;text-align: left" id="21">新增Tab项</button></a></dd>
+                        <dd><a href="javascript:;"><button class="layui-btn site-demo-active" data-type="tabAdd" style="padding: 0;background: rgba(0,0,0,0);width: 100%;text-align: left" id="20">新增Tab项</button></a></dd>
+                        <dd><a href="">超链接</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">解决方案</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">列表一</a></dd>
+                        <dd><a href="javascript:;">列表二</a></dd>
+                        <dd><a href="">超链接</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="">云市场</a></li>
+                <li class="layui-nav-item"><a href="">发布商品</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="layui-body" style="top: 0;left:0;background: #F2F2F2;width:100%;transition: all 0.5s">
+        <!-- 内容主体区域 -->
+        <div class="layui-row">
+        <div class="layui-header layui-col-xs12 layui-col-sm12 layui-col-lg12" style="background: #fff;box-shadow: 0 1px 2px 0 rgba(0,0,0,.05);">
+
+            <!-- 头部区域（可配合layui已有的水平导航） -->
+
+            <div style="float: left;margin: 20px;cursor: pointer;display: none;" class="openBtn"><i class="layui-icon layui-icon-shrink-right" style="font-size: 16px;color: #333"></i>  </div>
+            <div style="float: left;margin: 20px;cursor: pointer" class="closeBtn"><i class="layui-icon layui-icon-spread-left" style="font-size: 16px;color: #333"></i>  </div>
+            <ul class="layui-nav layui-layout-right" style="background: red">
+                <li class="layui-nav-item">
+                    <a href="javascript:;">
+                        <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+                        贤心
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="">基本资料</a></dd>
+                        <dd><a href="">安全设置</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="">退了</a></li>
+            </ul>
+        </div>
+    </div>
+        <div class="layui-tab" lay-filter="demo" lay-allowclose="true" style="background: #fff;height: 100%">
+            <ul class="layui-tab-title">
+
+                <!--<li class="layui-this" lay-id="11">网站设置</li>-->
+                <!--<li lay-id="22">用户管理</li>-->
+                <!--<li lay-id="33">权限分配</li>-->
+                <!--<li lay-id="44">商品管理</li>-->
+                <!--<li lay-id="55">订单管理</li>-->
+            </ul>
+            <div class="layui-tab-content">
+                <!--<div class="layui-tab-item layui-show">内容1</div>-->
+                <!--<div class="layui-tab-item">内容2</div>-->
+                <!--<div class="layui-tab-item">内容3</div>-->
+                <!--<div class="layui-tab-item">内容4</div>-->
+                <!--<div class="layui-tab-item">内容5</div>-->
+            </div>
+        </div>
+    </div>
+
+
+</div>
+</div>
+<script src="./layui/layui.js"></script>
+<script>
+    //JavaScript代码区域
+    layui.use('element', function(){
+        var $ = layui.jquery
+            ,element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+
+        //触发事件
+        var active = {
+            tabAdd: function(){
+                //新增一个Tab项
+                var flag = false
+                var id = $(this).attr('id')
+                // console.log($(this).attr('id'))
+                $(".layui-tab-title li").each(function () {
+                     if(id == $(this).attr('lay-id')){
+                         flag = true;
+                         return
+                     }
+                });
+                // console.log(flag)
+                // if(flag){
+                //     element.tabChange('demo', '22'); //切换到：用户管理
+                //     element.render('tab')
+                // }else{
+                //     element.tabAdd('demo', {
+                //         title: '一'//用于演示
+                //         ,content: '内容'+ (Math.random()*1000|0)
+                //         ,id: 22
+                //     })
+                //     element.tabChange('demo', '22'); //切换到：用户管理
+                // }
+                if(!flag){
+                    element.tabDelete('demo', id);
+                    element.tabAdd('demo', {
+                        title: '一'//用于演示
+                        ,content: '<iframe src="iframe1.html" frameborder="0"></iframe>'
+                        ,id: id
+                    });
+                    element.tabChange('demo', id);
+                }else{
+                    element.tabChange('demo', id);
+                }
+
+
+                // console.log($(this).attr('lay-id'))
+
+
+            }
+            ,tabDelete: function(othis){
+                //删除指定Tab项
+                element.tabDelete('demo', '44'); //删除：“商品管理”
+
+
+                othis.addClass('layui-btn-disabled');
+            }
+            ,tabChange: function(){
+                //切换到指定Tab项
+                element.tabChange('demo', '22'); //切换到：用户管理
+            }
+        };
+
+        $('.site-demo-active').on('click', function(){
+            var othis = $(this), type = othis.data('type');
+            active[type] ? active[type].call(this, othis) : '';
+
+        });
+
+
+        // 点击tab左边导航变化
+        $('.layui-tab-title').on('click','li',function () {
+            // console.log($(this).attr('lay-id'))
+            var id = $(this).attr('lay-id');
+            $(".site-demo-active").parent().parent().removeAttr('class')
+            $(".site-demo-active").each(function () {
+                if(id == $(this).attr('id')){
+                    $(this).parent().parent().attr('class','layui-this')
+                }
+            });
+
+            // console.log($(".site-demo-active"))
+            //
+
+
+        });
+
+
+        // 点击tab×的时候左边导航变化
+        $(".layui-tab").on("click",function(e){
+            if($(e.target).is(".layui-tab-close")){
+                $(".site-demo-active").parent().parent().removeAttr('class');
+                var id = $(".layui-tab-title li").eq($(".layui-tab-title li").length-1).attr('lay-id');
+                $(".site-demo-active").each(function () {
+                    if(id == $(this).attr('id')){
+                        $(this).parent().parent().attr('class','layui-this')
+                    }
+                });
+
+            }
+        });
+
+
+        $(".openBtn").on('click',function () {
+            $(".layui-side").css({"left":-200})
+            $(".layui-body").css({"left":0});
+            $(".closeBtn").css({'display':'block'});
+            $(".openBtn").css({'display':'none'});
+
+        });
+        $(".closeBtn").on('click',function () {
+            $(".layui-side").css({"left":0})
+            $(".layui-body").css({"left":200});
+            $(".openBtn").css({'display':'block'});
+            $(".closeBtn").css({'display':'none'});
+
+        })
+
+
+
+    });
+</script>
+</body>
+</html>
