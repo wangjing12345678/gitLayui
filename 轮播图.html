@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	#banxin{
+				width: 520px;
+				height: 280px;
+				position: relative;
+				margin: 50px auto;
+				border:4px solid yellow;
+				overflow: hidden;
+			}
+          #content img{
+				position: absolute;
+				/*vertical-align 属性设置元素的垂直对齐方式*/
+				vertical-align: top;
+				/*transition 过渡 念法 串怎申    opacity结合过度动画改变*/
+				transition: 1s opacity;
+				opacity: 0;
+			    z-index: 999;
+			  cursor: pointer;
+				
+			}
+
+			#content img.active{
+				opacity: 1;
+			}
+			#dots .active{
+				background: red;
+			}
+			#dots{
+				width: 150px;
+				height: 20px;
+			    /*	Flex是Flexible     Box的缩写，意为”弹性布局”，用来为盒状模型提供最大的灵活性。*/
+			    /*平分当前的布局*/
+				display: flex;
+				/*justify-content: space-between;在弹性盒对象的 <div> 元素中的各项周围留有空白：*/
+				justify-content: space-between;
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				margin: auto;
+			}
+			#dots li{
+				width: 20px;
+				height: 20px;
+				background: #333;
+				border-radius: 50%;
+				color: #fff;
+				text-align: center;
+				line-height: 20px;
+			
+				cursor:pointer;
+			}
+			ul{
+				list-style: none;
+			}
+			
+			
+			#left,#right{
+				position:absolute;
+				background-color: rgba(0,0,0,0.5);
+				width: 30px;
+				height: 50px;
+				line-height: 50px;
+				/*z-index: 20;*/
+				font-size: 20px;
+				margin: auto;
+				color:#fff;
+				text-decoration:none;
+				text-align: center;
+				top:50%;
+				margin-top: -25px;
+				z-index: 9999;
+			}
+			#left {
+				left:0;
+			}
+			#right{
+				right:0;
+			}
+			.one{
+				background-color: red;
+				width: 300px;
+				height: 300px;
+			}
+
+		image{
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+<div id="banxin">
+	<div id="content">
+		<img src="img/1.jpg" alt="" class="active" style="cursor:pointer" onclick="to()">
+		<img src="img/2.jpg" alt="" />
+		<img src="img/3.jpg" alt="" />
+	</div>
+	    <a href="###" id="left"><</a>
+		<a href="###" id="right">></a>
+		<ul id="dots">
+			<li class="active">1</li>
+			<li>2</li>
+			<li>3</li>	
+		</ul>
+		
+</div>
+<div onclick="window.location='https://www.baidu.com/'">123</div>
+<div onclick= window.open('https://www.baidu.com/','_black')>321</div>
+<!-- <div class="one"><span>123</span><span>123</span></div> -->
+<script>
+	var mybanxin = document.getElementById('banxin')
+	var myleft = document.getElementById('left')
+	var myright = document.getElementById('right')
+	var mydots = document.getElementById("dots")
+	var myli = mydots.getElementsByTagName('li')
+	var mycontent = document.getElementById("content")
+	var myimg = mycontent.getElementsByTagName('img')
+	var index = 0
+    //点击左侧按钮方法
+    myleft.onclick = function(){
+       index--;
+       if(index == -1){
+       	index =2;
+       }
+       Classobj(myimg)
+       Classobj(myli)
+    }
+    //点击右侧按钮方法
+    var play = myright.onclick = function(){
+       index++;
+       if(index == 3){
+       	index = 0;
+       }
+       Classobj(myimg)
+       Classobj(myli)
+    }
+
+//	4.自动播放
+    var time = setInterval(play,2500)
+    mybanxin.onmouseover = function(){
+     clearInterval(time)
+    }
+    mybanxin.onmouseout = function(){
+     clearInterval(time)
+     time = setInterval(play,2500)
+    }
+
+
+
+   
+
+    
+    function Classobj(obj){
+    	   for(var i = 0; i <obj.length; i++){
+             obj[i].className = ""
+    	   }
+    	obj[index].className = "active"	
+    	console.log(index)
+    }
+
+
+
+    // 测试与上无关
+    var a = ["123","321","567"]
+    for(var i =0; i<a.length; i++){
+        console.log(a[i])
+        // return a
+    }
+     console.log(a[2])
+
+	function  to() {
+        console.log("8888")
+
+    }
+
+</script>
+</body>
+</html>

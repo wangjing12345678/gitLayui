@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+     <div class="b" style="cursor: pointer">
+         <div class="aaa"></div>
+         <div class="bbb"></div>
+     </div>
+     <button>点击添加元素</button>
+
+
+     <script>
+         var b = document.querySelector('.b')
+         var button = document.querySelector('button')
+          console.log(b.children)
+
+       button.onclick = function(){
+           var a = document.createElement('p')
+           a.innerHTML = 'aaaaa'+Math.ceil(Math.random()*10)
+           if(!b.children.length){
+               b.append(a)
+           }else{
+               b.insertBefore(a,b.children[0])
+           }
+       }
+
+     </script>
+</body>
+</html>

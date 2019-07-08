@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+
+<script>
+
+    var arr=[2,8,5,0,5,2,6,7,2,6,2];
+    function unique1(arr){
+        var hash=[];
+        for (var i = 0; i < arr.length; i++) {
+            if(hash.indexOf(arr[i])==-1){
+                hash.push(arr[i]);
+            }
+        }
+        return hash;
+    }
+   var filterUnique = arr => arr.filter(i => arr.indexOf(i) !== arr.lastIndexOf(i))
+   var arr2 = unique1(filterUnique(arr))
+    var repeatArr = [];
+    var norepeatArr = []
+    for(var i=0;i<arr2.length;i++){
+        var tempArr=[];
+        for(var j =0;j<arr.length;j++){
+            if(arr[j] == arr2[i]){
+                tempArr.push(arr[j])
+            }
+        }
+        repeatArr.push(tempArr);
+    }
+    for(var i=0;i<arr2.length;i++){
+        for(var j =0;j<arr.length;j++){
+            if(arr[j] == arr2[i]){
+               arr.splice(j,1)
+            }
+        }
+    }
+    for(var g=0;g<arr.length;g++){
+        var tempArr = [];
+        tempArr.push(arr[g])
+        norepeatArr.push(tempArr)
+    }
+    console.log(repeatArr)
+    console.log(norepeatArr)
+
+
+    var str = '1234'
+    console.log(str.slice(0,-1))
+
+
+
+
+
+</script>
+
+</body>
+</html>
